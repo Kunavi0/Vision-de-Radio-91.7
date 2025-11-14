@@ -1,30 +1,59 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Visión de Radio FM 91.7</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visión de Radio FM 91.7 - En Vivo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
 
-  <div class="logo-circle">
-    <img src="logo.png" alt="Logo">
-  </div>
+    <div class="container">
+        
+        <header>
+            <img src="logo.png" alt="Logo Visión de Radio 91.7" class="radio-logo">
+            <h1>Visión de Radio FM 91.7</h1>
+            <p class="slogan">La Voz de la Región</p>
+        </header>
 
-  <h1>Visión de Radio FM 91.7</h1>
-  <p>Propietario: <b>Nilton Werning</b></p>
-  <p>Director: <b>Nelson González</b></p>
-  <p>WhatsApp: <b>3705-400598</b></p>
+        <main>
+            
+            <section class="player-section">
+                <h2>🔴 Escuchanos En Vivo</h2>
+                <div class="player-box">
+                    <iframe
+                        src="https://visionderadio917.listen2myshow.com/"
+                        scrolling="no"
+                        frameborder="0"
+                        style="width: 100%; max-width: 400px; height: 180px; border: none; overflow: hidden;">
+                    </iframe>
+                    <p class="tip-play">Dale al botón de Play dentro del reproductor para escuchar.</p>
+                </div>
+            </section>
+            <section class="info-section">
+                <h2>Contactos y Dirección</h2>
+                <div class="info-details">
+                    <p><strong>Propietario:</strong> Guillermo</p>
+                    <p><strong>Director:</strong> (Nombre del Director)</p>
+                    <p><strong>Frecuencia:</strong> FM 91.7 MHz</p>
+                    <p><strong>Ubicación:</strong> (Tu Ciudad/Localidad)</p>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="whatsapp-btn">
+                        Abrir WhatsApp
+                    </a>
+                    </div>
+            </section>
 
-  <div class="player">
-    <h2>🔴 En Vivo</h2>
-    <audio controls autoplay>
-      <source src="http://212.84.160.3:8734/;" type="audio/mpeg">
-    </audio>
-  </div>
+        </main>
 
-</div>
+        <footer>
+            <p>&copy; 2024 Visión de Radio FM 91.7. Todos los derechos reservados.</p>
+        </footer>
+
+    </div>
+
 </body>
 </html>

@@ -1,32 +1,142 @@
+:root {
+    --color-background: #000; /* Fondo negro como la referencia */
+    --color-text: #fff; /* Texto blanco */
+    --color-primary: #FF0000; /* Rojo, para mantener el branding 'En Vivo' */
+    --color-secondary: #222; /* Gris oscuro para cajas */
+    --font-main: 'Roboto', sans-serif;
+}
 
 body {
-  margin:0;
-  font-family: Arial;
-  background:#111;
-  color:#fff;
-  text-align:center;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
 }
+
 .container {
-  padding:40px;
-  backdrop-filter: blur(8px);
-  background: rgba(0,0,0,0.5);
-  margin:40px;
-  border-radius:20px;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
 }
-.logo-circle {
-  width:200px;
-  height:200px;
-  border-radius:50%;
-  overflow:hidden;
-  margin:0 auto 20px;
-  border:4px solid #fff;
+
+/* --- Header y Logo --- */
+header {
+    padding: 40px 0 20px 0;
+    background-color: transparent;
 }
-.logo-circle img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
+
+.radio-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Logo en círculo */
+    border: 3px solid var(--color-primary); /* Borde rojo */
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
 }
-audio {
-  width:80%;
-  max-width:400px;
+
+.radio-logo:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    margin: 10px 0 5px 0;
+    color: var(--color-text);
+}
+
+.slogan {
+    font-size: 1em;
+    font-weight: 300;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+/* --- Main Content (Sections) --- */
+main {
+    padding: 0 0 40px 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-bottom: 15px;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-secondary);
+    padding-bottom: 5px;
+}
+
+/* Estilos de las secciones con el look 'caja' de la referencia */
+.player-section, .info-section {
+    background-color: var(--color-secondary);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    text-align: center;
+}
+
+/* Info Section */
+.info-details p {
+    margin: 8px 0;
+    font-size: 0.95em;
+}
+
+.info-details strong {
+    color: var(--color-primary); /* Nombres en color rojo de acento */
+    font-weight: 700;
+}
+
+/* Botón de WhatsApp */
+.social-links {
+    margin-top: 25px;
+}
+
+.whatsapp-btn {
+    display: inline-block;
+    background-color: #25D366; /* Verde WhatsApp */
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+}
+
+/* --- Footer --- */
+footer {
+    padding: 10px 0;
+    font-size: 0.8em;
+    color: #555;
+    border-top: 1px solid #222;
+}
+
+/* Adaptación a dispositivos pequeños */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    .radio-logo {
+        width: 100px;
+        height: 100px;
+    }
+    .container {
+        padding: 10px;
+    }
 }

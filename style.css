@@ -1,0 +1,60 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+    background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4');
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(5px);
+}
+
+.overlay {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.6);
+    z-index:-1;
+}
+
+header {
+    padding: 20px;
+}
+
+.logo {
+    width: 180px;
+    margin-top: 20px;
+}
+
+.player-section {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 600px;
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.player {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.contacto {
+    background: rgba(0,0,0,0.6);
+    width: 80%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(0,0,0,0.6);
+}

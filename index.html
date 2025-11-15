@@ -3,66 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visión de Radio FM 91.7 - En Vivo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>VISION DE RADIO 91.7 - Tu Voz. Nuestro Espectro.</title>
+
+    <!-- Icono si querés poner uno -->
+    <link rel="icon" href="logo.png" type="image/png">
+
+    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Script del modo oscuro -->
+    <script defer src="js/theme-toggle.js"></script>
+
 </head>
 <body>
 
     <div class="container">
-        
+
+        <!-- ENCABEZADO -->
         <header>
             <img src="logo.png" alt="Logo Visión de Radio 91.7" class="radio-logo">
-            <h1>Visión de Radio FM 91.7</h1>
-            <p class="slogan">La Voz de la Región</p>
+            <h1>VISION DE RADIO 91.7</h1>
+            <p class="slogan">Tu Voz. Nuestro Espectro.</p>
+
+            <button class="theme-btn" id="themeToggle">Cambiar Tema</button>
         </header>
 
         <main>
-            
+
+            <!-- REPRODUCTOR -->
             <section class="player-section">
-                <h2>⚫ Escuchanos En Vivo</h2> <div class="player-box" style="max-width: 386px; margin: 0 auto; text-align: left;">
+                <h2>🎧 Escuchanos En Vivo</h2>
+
+                <div class="player-box">
                     <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script>
                     <script type="text/javascript">
                         MRP.insert({
                             'url':'https://fpsnew2.listen2myradio.com:2199/listen.php?ip=212.84.160.3&port=8734&type=s2&mount=1',
                             'volume':100,
-                            'autoplay':false, 
+                            'autoplay':false,
                             'forceHTML5':true,
                             'jsevents':true,
                             'buffering':0,
-                            'title':'Vision de Radio',
-                            'welcome':'Bienvenido',
+                            'title':'VISION DE RADIO 91.7',
+                            'welcome':'En Vivo',
                             'wmode':'transparent',
-                            'skin':'black', // Estilo moderno oscuro
+                            'skin':'neon',
                             'width':386,
                             'height':47
                         });
                     </script>
-                    <p class="tip-play" style="text-align:center; font-size: 0.9em; margin-top: 5px;">
-                        Dale al Play en el reproductor para comenzar la transmisión.
-                    </p>
+
+                    <p class="tip-play">Pulsa Play para comenzar la transmisión.</p>
                 </div>
             </section>
-            <section class="info-section">
-                <h2>Contactos y Dirección</h2>
-                <div class="info-details">
-                    <p><strong>Propietario:</strong> Nilton Werning</p>
-                    <p><strong>Director:</strong> Nelson González</p>
-                    <p><strong>Frecuencia:</strong> FM 91.7 MHz</p>
-                    <p><strong>Ubicación:</strong> (Tu Ciudad/Localidad)</p>
-                </div>
-                
-                <div class="social-links">
-                    <a href="https://wa.me/3705400598" target="_blank" class="whatsapp-btn">
-                        Abrir WhatsApp
-                    </a>
-                </div>
+
+            <!-- FORMULARIO -->
+            <section class="contact-section">
+                <h2>📩 Envíanos un Mensaje</h2>
+
+                <!-- Cambiá AQUI la URL del formulario -->
+                <form action="AQUI_TU_URL_DE_FORMULARIO" method="POST" class="contact-form">
+
+                    <div class="form-group">
+                        <label for="name">Tu Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Tu Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+
+                <p class="whatsapp-note">O contáctanos por WhatsApp:</p>
+
+                <a href="https://wa.me/3705400598" target="_blank" class="whatsapp-btn">
+                    Abrir WhatsApp
+                </a>
             </section>
 
         </main>
 
+        <!-- PIE DE PÁGINA -->
         <footer>
-            <p>&copy; 2024 Visión de Radio FM 91.7. Todos los derechos reservados.</p>
+            <p>&copy; 2024 VISION DE RADIO 91.7. Todos los derechos reservados.</p>
         </footer>
 
     </div>

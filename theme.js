@@ -1,1 +1,0 @@
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {document.body.classList.toggle('dark', e.matches);});

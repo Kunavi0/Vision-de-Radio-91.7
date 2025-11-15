@@ -1,142 +1,106 @@
-:root {
-    --color-background: #000; /* Fondo negro */
-    --color-text: #fff; /* Texto blanco */
-    --color-primary: #00BFFF; /* AZUL VIBRANTE (Cambiado) */
-    --color-secondary: #222; /* Gris oscuro para cajas */
-    --font-main: 'Roboto', sans-serif;
+/* ===============================
+   ESTILOS GENERALES
+================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: var(--color-background);
-    color: var(--color-text);
-    font-family: var(--font-main);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+  min-height: 100vh;
 }
 
-.container {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
+/* ===============================
+   TEMAS CLARO / OSCURO
+================================= */
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --card: #f0f0f0;
+  --accent: #ff2d55;
 }
 
-/* --- Header y Logo --- */
+body.dark {
+  --bg: #0a0a0a;
+  --text: #e1e1e1;
+  --card: #161616;
+  --accent: #ff2d55;
+}
+
+/* ===============================
+   HEADER
+================================= */
 header {
-    padding: 40px 0 20px 0;
-    background-color: transparent;
+  text-align: center;
+  padding: 25px 10px;
 }
 
-.radio-logo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%; /* Logo en círculo */
-    border: 3px solid var(--color-primary); /* Borde AZUL */
-    object-fit: cover;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
-}
-
-.radio-logo:hover {
-    transform: scale(1.05);
+.logo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+  box-shadow: 0 0 15px var(--accent);
+  margin-bottom: 10px;
 }
 
 h1 {
-    font-size: 2.2em;
-    font-weight: 700;
-    margin: 10px 0 5px 0;
-    color: var(--color-text);
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.slogan {
-    font-size: 1em;
-    font-weight: 300;
-    color: #aaa;
-    margin-bottom: 20px;
+/* ===============================
+   PLAYER
+================================= */
+.player-card {
+  background: var(--card);
+  margin: 25px auto;
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.2);
 }
 
-/* --- Main Content (Sections) --- */
-main {
-    padding: 0 0 40px 0;
+button {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.2s;
+  background: var(--accent);
+  color: white;
 }
 
-h2 {
-    font-size: 1.5em;
-    font-weight: 400;
-    margin-bottom: 15px;
-    color: var(--color-text);
-    border-bottom: 1px solid var(--color-secondary);
-    padding-bottom: 5px;
+button:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
 }
 
-/* Estilos de las secciones con el look 'caja' de la referencia */
-.player-section, .info-section {
-    background-color: var(--color-secondary);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-    text-align: center;
+/* ===============================
+   TEMA SWITCH
+================================= */
+.theme-toggle {
+  text-align: center;
+  margin: 20px 0;
 }
 
-/* Info Section */
-.info-details p {
-    margin: 8px 0;
-    font-size: 0.95em;
-}
-
-.info-details strong {
-    color: var(--color-primary); /* Nombres en color AZUL de acento */
-    font-weight: 700;
-}
-
-/* Botón de WhatsApp */
-.social-links {
-    margin-top: 25px;
-}
-
-.whatsapp-btn {
-    display: inline-block;
-    background-color: #25D366; /* Verde WhatsApp se mantiene */
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.whatsapp-btn:hover {
-    background-color: #128C7E;
-    transform: translateY(-2px);
-}
-
-/* --- Footer --- */
-footer {
-    padding: 10px 0;
-    font-size: 0.8em;
-    color: #555;
-    border-top: 1px solid #222;
-}
-
-/* Adaptación a dispositivos pequeños */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.8em;
-    }
-    .radio-logo {
-        width: 100px;
-        height: 100px;
-    }
-    .container {
-        padding: 10px;
-    }
-}
+#themeSwitch {
+  background: #444;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 12px;

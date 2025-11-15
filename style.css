@@ -1,33 +1,40 @@
 .radio-logo{width:1200px;height:auto;border-radius:0%;animation:fadeIn 1.5s ease-in-out;}
 
-/* Fondo difuminado con efecto radial */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background: #0a0f24;
-    position: relative;
-    overflow-x: hidden;
-}
-
-/* Capa del fondo difuminado */
-.background-blur {
+/* FONDO ANIMADO DIFUMINADO */
+.background-animated {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 30%, rgba(0, 132, 255, 0.35), transparent 70%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 120, 0.35), transparent 75%),
-                radial-gradient(circle at 20% 80%, rgba(0, 255, 170, 0.35), transparent 70%);
-    filter: blur(80px);
+    background: radial-gradient(circle at 20% 30%, rgba(0, 140, 255, 0.35), transparent 60%),
+                radial-gradient(circle at 80% 40%, rgba(255, 0, 120, 0.35), transparent 65%),
+                radial-gradient(circle at 50% 80%, rgba(0, 255, 170, 0.35), transparent 65%);
+    filter: blur(70px);
+    animation: moveLights 14s ease-in-out infinite alternate;
     z-index: -1;
     pointer-events: none;
 }
 
-/* Para modo oscuro */
-body.dark .background-blur {
-    background: radial-gradient(circle at 50% 30%, rgba(0, 132, 255, 0.45), transparent 70%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 120, 0.45), transparent 75%),
-                radial-gradient(circle at 20% 80%, rgba(0, 255, 170, 0.45), transparent 70%);
+/* MODO OSCURO */
+body.dark .background-animated {
+    background: radial-gradient(circle at 20% 30%, rgba(0, 140, 255, 0.45), transparent 60%),
+                radial-gradient(circle at 80% 40%, rgba(255, 0, 120, 0.45), transparent 65%),
+                radial-gradient(circle at 50% 80%, rgba(0, 255, 170, 0.45), transparent 65%);
+}
+
+/* ANIMACIÓN DEL FONDO */
+@keyframes moveLights {
+    0% {
+        background-position: 0% 0%, 100% 0%, 50% 100%;
+        transform: scale(1);
+    }
+    50% {
+        background-position: 30% 20%, 70% 10%, 60% 90%;
+        transform: scale(1.05);
+    }
+    100% {
+        background-position: 20% 40%, 90% 20%, 40% 80%;
+        transform: scale(1);
+    }
 }

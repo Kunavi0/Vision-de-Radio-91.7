@@ -1,7 +1,7 @@
 :root {
-    --color-background: #000; /* Fondo negro como la referencia */
+    --color-background: #000; /* Fondo negro */
     --color-text: #fff; /* Texto blanco */
-    --color-primary: #FF0000; /* Rojo, para mantener el branding 'En Vivo' */
+    --color-primary: #00BFFF; /* AZUL VIBRANTE (Cambiado) */
     --color-secondary: #222; /* Gris oscuro para cajas */
     --font-main: 'Roboto', sans-serif;
 }
@@ -37,7 +37,7 @@ header {
     width: 120px;
     height: 120px;
     border-radius: 50%; /* Logo en círculo */
-    border: 3px solid var(--color-primary); /* Borde rojo */
+    border: 3px solid var(--color-primary); /* Borde AZUL */
     object-fit: cover;
     margin-bottom: 15px;
     transition: transform 0.3s ease;
@@ -92,7 +92,7 @@ h2 {
 }
 
 .info-details strong {
-    color: var(--color-primary); /* Nombres en color rojo de acento */
+    color: var(--color-primary); /* Nombres en color AZUL de acento */
     font-weight: 700;
 }
 
@@ -103,7 +103,7 @@ h2 {
 
 .whatsapp-btn {
     display: inline-block;
-    background-color: #25D366; /* Verde WhatsApp */
+    background-color: #25D366; /* Verde WhatsApp se mantiene */
     color: #fff;
     padding: 12px 25px;
     border-radius: 50px;

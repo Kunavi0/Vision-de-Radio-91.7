@@ -2,52 +2,134 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Visión de Radio 91.7</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visión de Radio 91.7 FM</title>
+
+<!-- ESTILOS -->
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        text-align: center;
+        background: linear-gradient(120deg, #1a1a1a, #3a3a3a);
+        overflow-x: hidden;
+    }
+
+    /* FONDO ANIMADO */
+    .background-animado {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('RADIO.PNG') center/cover no-repeat;
+        filter: blur(8px) brightness(0.6);
+        z-index: -1;
+        animation: zoom 12s ease-in-out infinite alternate;
+    }
+    @keyframes zoom {
+        from { transform: scale(1); }
+        to { transform: scale(1.1); }
+    }
+
+    .logo {
+        margin-top: 40px;
+        width: 200px;
+        border-radius: 50%;
+    }
+
+    /* TARJETA DEL REPRODUCTOR */
+    .player-container {
+        margin: 40px auto;
+        width: 90%;
+        max-width: 420px;
+        background: rgba(0,0,0,0.45);
+        padding: 25px;
+        border-radius: 18px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    }
+
+    .player-title {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-shadow: 0 0 10px black;
+    }
+
+    /* ICONO ANIMADO DE ONDAS */
+    .radio-icon {
+        width: 90px;
+        margin: 0 auto 15px;
+        animation: pulse 1.6s infinite ease-in-out;
+        opacity: 0.9;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.9; }
+        50% { transform: scale(1.12); opacity: 1; }
+        100% { transform: scale(1); opacity: 0.9; }
+    }
+
+    /* BOTÓN WHATSAPP */
+    .whatsapp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #25D366;
+        padding: 14px 22px;
+        border-radius: 50px;
+        color: #fff;
+        font-size: 18px;
+        text-decoration: none;
+        margin-top: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        transition: 0.3s;
+    }
+    .whatsapp-btn img {
+        width: 28px;
+        height: 28px;
+    }
+    .whatsapp-btn:hover {
+        background: #1ebc5b;
+        transform: scale(1.03);
+    }
+
+</style>
 </head>
 <body>
-<header class="hero">
-    <h1>Visión de Radio 91.7</h1>
-</header>
 
-<section class="player-section">
-<div class="radio-card">
-    <div class="radio-info">
-        <div class="play-btn" id="playBtn">
-            ▶
-        </div>
-        <div>
-            <h3>VISION DE RADIO 91.7</h3>
-            <p>En Vivo</p>
-        </div>
-    </div>
+<div class="background-animado"></div>
 
-    <div class="slider-box">
-        <input type="range" id="volumeSlider" min="0" max="100" value="100">
-        <span id="volLabel">100%</span>
-    </div>
+<!-- LOGO -->
+<img class="logo" src="LOGO.png" alt="Logo de la Radio">
+
+<!-- REPRODUCTOR -->
+<div class="player-container">
+    <div class="player-title">📻 Visión de Radio 91.7 FM</div>
+
+    <!-- ICONO ANIMADO -->
+    <img class="radio-icon" src="icono-ondas.png" alt="ondas">
+
+    <!-- AUDIO CON AUTOPLAY -->
+    <audio id="radioPlayer" autoplay controls>
+        <source src="https://visionderadio917.listen2myshow.com/stream" type="audio/mpeg">
+        Tu navegador no soporta el reproductor.
+    </audio>
 </div>
 
-<audio id="radioPlayer" src="https://fpsnew2.listen2myradio.com:2199/listen.php?ip=212.84.160.3&port=8734&type=s2&mount=1"></audio>
+<!-- BOTÓN WHATSAPP -->
+<a class="whatsapp-btn" href="https://wa.me/549??????????" target="_blank">
+    <img src="whatsapp.png" alt="WhatsApp">
+    Chatear por WhatsApp
+</a>
 
-    });
+<script>
+    // Reintento si el navegador bloquea autoplay
+    const player = document.getElementById("radioPlayer");
+    document.addEventListener("click", () => player.play());
 </script>
-
-</section>
-
-<section class="contact">
-    <h2>Envíanos un Mensaje</h2>
-    <form>
-        <input type="text" placeholder="Tu Nombre">
-        <input type="email" placeholder="Tu Correo Electrónico">
-        <textarea placeholder="Mensaje"></textarea>
-        <button type="submit">Enviar</button>
-    </form>
-    <a href="https://wa.me/3705400598" target="_blank" class="whatsapp-btn">
-        <i class="fab fa-whatsapp"></i> Enviar WhatsApp
-    </a>
-</section>
 
 </body>
 </html>

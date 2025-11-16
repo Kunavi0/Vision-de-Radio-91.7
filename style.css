@@ -13,11 +13,17 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(-45deg, #1e1e1e, #111, #202020, #0f0f0f);
+    background: linear-gradient(120deg, 
+        #001f3f,  /* azul profundo */
+        #003b73,  /* azul marino */
+        #005f99,  /* azul suave */
+        #0083c4,  /* azul claro vibrante */
+        #00aaf2   /* celeste intenso */
+    );
     background-size: 400% 400%;
-    animation: gradientMove 12s ease infinite;
+    animation: gradientMove 18s ease infinite;
     z-index: -1;
-    filter: blur(10px);
+    filter: blur(12px) brightness(0.75);
 }
 
 @keyframes gradientMove {

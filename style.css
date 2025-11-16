@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: radial-gradient(circle at top, #001f46, #000000);
+    color: #fff;
+}
+.hero {
+    padding: 50px;
+    text-align: center;
+    font-size: 2.5rem;
+    color: cyan;
+    text-shadow: 0 0 10px cyan;
+}
+.player-section, .contact {
+    padding: 20px 40px;
+    margin: 20px auto;
+    max-width: 600px;
+    background: rgba(0,0,30,0.6);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px #00eaff;
+}
+input, textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: #0003;
+    border: 1px solid #00eaff;
+    color: #fff;
+}
+button, .whatsapp-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #00eaff;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    border-radius: 8px;
+    display: inline-block;
+}
+.whatsapp-btn {
+    background: #25d366;
+    color: #fff;
+}

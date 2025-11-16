@@ -1,108 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VISION DE RADIO 91.7 - Tu Voz. Nuestro Espectro.</title>
-
-    <!-- Icono si querés poner uno -->
-    <link rel="icon" href="logo.png" type="image/png">
-
-    <!-- Fuente -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <!-- Estilos -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Script del modo oscuro -->
-    <script defer src="js/theme-toggle.js"></script>
-
+<meta charset="UTF-8">
+<title>Visión de Radio 91.7</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+<header class="hero">
+    <h1>Visión de Radio 91.7</h1>
+</header>
 
-    <div class="container">
+<section class="player-section">
+    <h2><i class="fa fa-headphones"></i> Escúchanos En Vivo</h2>
+    <audio controls src="https://stream.zeno.fm/tcxvpv4d6rhvv"></audio>
+</section>
 
-        <!-- ENCABEZADO -->
-        <header>
-            <img src="LOGO.gif" alt="Logo Visión de Radio 91.7" class="radio-logo">
-            <h1>VISION DE RADIO 91.7</h1>
-            <p class="slogan">Tu Voz. Nuestro Espectro.</p>
-
-
-        <main>
-
-            <!-- REPRODUCTOR -->
-            <section class="player-section">
-                <h2>🎧 Escuchanos En Vivo</h2>
-
-                <div class="player-box">
-                    <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script>
-                    <script type="text/javascript">
-                        MRP.insert({
-                            'url':'https://fpsnew2.listen2myradio.com:2199/listen.php?ip=212.84.160.3&port=8734&type=s2&mount=1',
-                            'volume':100,
-                            'autoplay':true,
-                            'forceHTML5':true,
-                            'jsevents':true,
-                            'buffering':0,
-                            'title':'VISION DE RADIO 91.7',
-                            'welcome':'En Vivo',
-                            'wmode':'transparent',
-                            'skin':'neon',
-                            'width':386,
-                            'height':100
-                        });
-                    </script>
-
-                    <p class="tip-play">Pulsa Play para comenzar la transmisión.</p>
-                </div>
-            </section>
-
-            <!-- FORMULARIO -->
-            <section class="contact-section">
-                <h2>📩 Envíanos un Mensaje</h2>
-
-                <!-- Cambiá AQUI la URL del formulario -->
-                <form action="AQUI_TU_URL_DE_FORMULARIO" method="POST" class="contact-form">
-
-                    <div class="form-group">
-                        <label for="name">Tu Nombre:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Tu Correo Electrónico:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Mensaje:</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
-                </form>
-
-                <p class="whatsapp-note">O contáctanos por WhatsApp:</p>
-<a href="https://wa.me/3705400598" target="_blank" class="whatsapp-btn">
-    <i class="fab fa-whatsapp"></i> Enviar mensaje
-</a>
-                </a>
-            </section>
-
-        </main>
-
-        <!-- PIE DE PÁGINA -->
-        <footer>
-            <p>&copy; 2024 VISION DE RADIO 91.7. Todos los derechos reservados.</p>
-        </footer>
-
-    </div>
+<section class="contact">
+    <h2>Envíanos un Mensaje</h2>
+    <form>
+        <input type="text" placeholder="Tu Nombre">
+        <input type="email" placeholder="Tu Correo Electrónico">
+        <textarea placeholder="Mensaje"></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+    <a href="https://wa.me/3705400598" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i> Enviar WhatsApp
+    </a>
+</section>
 
 </body>
-    <div class="background-animated"></div>
 </html>
-<a href="https://wa.me/3705400598" target="_blank" class="whatsapp-btn">
-    Abrir WhatsApp
-</a>

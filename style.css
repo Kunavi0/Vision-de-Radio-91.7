@@ -1,40 +1,44 @@
-.radio-logo{width:1200px;height:auto;border-radius:0%;animation:fadeIn 1.5s ease-in-out;}
-
-/* FONDO ANIMADO DIFUMINADO */
-.background-animated {
-    position: fixed;
-    top: 0;
-    left: 0;
+body {
+    margin: 0;
+    font-family: Arial;
+    background: radial-gradient(circle at top, #001f46, #000000);
+    color: #fff;
+}
+.hero {
+    padding: 50px;
+    text-align: center;
+    font-size: 2.5rem;
+    color: cyan;
+    text-shadow: 0 0 10px cyan;
+}
+.player-section, .contact {
+    padding: 20px 40px;
+    margin: 20px auto;
+    max-width: 600px;
+    background: rgba(0,0,30,0.6);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px #00eaff;
+}
+input, textarea {
     width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 30%, rgba(0, 140, 255, 0.35), transparent 60%),
-                radial-gradient(circle at 80% 40%, rgba(255, 0, 120, 0.35), transparent 65%),
-                radial-gradient(circle at 50% 80%, rgba(0, 255, 170, 0.35), transparent 65%);
-    filter: blur(70px);
-    animation: moveLights 14s ease-in-out infinite alternate;
-    z-index: -1;
-    pointer-events: none;
+    margin-top: 10px;
+    padding: 10px;
+    background: #0003;
+    border: 1px solid #00eaff;
+    color: #fff;
 }
-
-/* MODO OSCURO */
-body.dark .background-animated {
-    background: radial-gradient(circle at 20% 30%, rgba(0, 140, 255, 0.45), transparent 60%),
-                radial-gradient(circle at 80% 40%, rgba(255, 0, 120, 0.45), transparent 65%),
-                radial-gradient(circle at 50% 80%, rgba(0, 255, 170, 0.45), transparent 65%);
+button, .whatsapp-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #00eaff;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    border-radius: 8px;
+    display: inline-block;
 }
-
-/* ANIMACIÓN DEL FONDO */
-@keyframes moveLights {
-    0% {
-        background-position: 0% 0%, 100% 0%, 50% 100%;
-        transform: scale(1);
-    }
-    50% {
-        background-position: 30% 20%, 70% 10%, 60% 90%;
-        transform: scale(1.05);
-    }
-    100% {
-        background-position: 20% 40%, 90% 20%, 40% 80%;
-        transform: scale(1);
-    }
+.whatsapp-btn {
+    background: #25d366;
+    color: #fff;
 }

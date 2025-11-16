@@ -1,135 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visión de Radio 91.7 FM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISION DE RADIO 91.7 - Tu Voz. Nuestro Espectro.</title>
 
-<!-- ESTILOS -->
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        color: #fff;
-        text-align: center;
-        background: linear-gradient(120deg, #1a1a1a, #3a3a3a);
-        overflow-x: hidden;
-    }
+    <!-- Icono si querés poner uno -->
+    <link rel="icon" href="logo.png" type="image/png">
 
-    /* FONDO ANIMADO */
-    .background-animado {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('RADIO.PNG') center/cover no-repeat;
-        filter: blur(8px) brightness(0.6);
-        z-index: -1;
-        animation: zoom 12s ease-in-out infinite alternate;
-    }
-    @keyframes zoom {
-        from { transform: scale(1); }
-        to { transform: scale(1.1); }
-    }
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-    .logo {
-        margin-top: 40px;
-        width: 200px;
-        border-radius: 50%;
-    }
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css">
 
-    /* TARJETA DEL REPRODUCTOR */
-    .player-container {
-        margin: 40px auto;
-        width: 90%;
-        max-width: 420px;
-        background: rgba(0,0,0,0.45);
-        padding: 25px;
-        border-radius: 18px;
-        backdrop-filter: blur(15px);
-        box-shadow: 0 0 25px rgba(0,0,0,0.5);
-    }
+    <!-- Script del modo oscuro -->
+    <script defer src="js/theme-toggle.js"></script>
 
-    .player-title {
-        font-size: 22px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        text-shadow: 0 0 10px black;
-    }
-
-    /* ICONO ANIMADO DE ONDAS */
-    .radio-icon {
-        width: 90px;
-        margin: 0 auto 15px;
-        animation: pulse 1.6s infinite ease-in-out;
-        opacity: 0.9;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); opacity: 0.9; }
-        50% { transform: scale(1.12); opacity: 1; }
-        100% { transform: scale(1); opacity: 0.9; }
-    }
-
-    /* BOTÓN WHATSAPP */
-    .whatsapp-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: #25D366;
-        padding: 14px 22px;
-        border-radius: 50px;
-        color: #fff;
-        font-size: 18px;
-        text-decoration: none;
-        margin-top: 10px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-        transition: 0.3s;
-    }
-    .whatsapp-btn img {
-        width: 28px;
-        height: 28px;
-    }
-    .whatsapp-btn:hover {
-        background: #1ebc5b;
-        transform: scale(1.03);
-    }
-
-</style>
 </head>
 <body>
 
-<div class="background-animado"></div>
+    <div class="container">
 
-<!-- LOGO -->
-<img class="logo" src="LOGO.png" alt="Logo de la Radio">
+        <!-- ENCABEZADO -->
+        <header>
+            <img src="LOGO.gif" alt="Logo Visión de Radio 91.7" class="radio-logo">
+            <h1>VISION DE RADIO 91.7</h1>
+            <p class="slogan">Tu Voz. Nuestro Espectro.</p>
 
-<!-- REPRODUCTOR -->
-<div class="player-container">
-    <div class="player-title">📻 Visión de Radio 91.7 FM</div>
 
-    <!-- ICONO ANIMADO -->
-    <img class="radio-icon" src="icono-ondas.png" alt="ondas">
+        <main>
 
-    <!-- AUDIO CON AUTOPLAY -->
-    <audio id="radioPlayer" autoplay controls>
-        <source src="https://visionderadio917.listen2myshow.com/stream" type="audio/mpeg">
-        Tu navegador no soporta el reproductor.
-    </audio>
-</div>
+            <!-- REPRODUCTOR -->
+            <section class="player-section">
+                <h2>🎧 Escuchanos En Vivo</h2>
 
-<!-- BOTÓN WHATSAPP -->
-<a class="whatsapp-btn" href="https://wa.me/549??????????" target="_blank">
-    <img src="whatsapp.png" alt="WhatsApp">
-    Chatear por WhatsApp
-</a>
+                <div class="player-box">
+                    <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script>
+                    <script type="text/javascript">
+                        MRP.insert({
+                            'url':'https://fpsnew2.listen2myradio.com:2199/listen.php?ip=212.84.160.3&port=8734&type=s2&mount=1',
+                            'volume':100,
+                            'autoplay':true,
+                            'forceHTML5':true,
+                            'jsevents':true,
+                            'buffering':0,
+                            'title':'VISION DE RADIO 91.7',
+                            'welcome':'En Vivo',
+                            'wmode':'transparent',
+                            'skin':'neon',
+                            'width':386,
+                            'height':100
+                        });
+                    </script>
 
-<script>
-    // Reintento si el navegador bloquea autoplay
-    const player = document.getElementById("radioPlayer");
-    document.addEventListener("click", () => player.play());
-</script>
+                    <p class="tip-play">Pulsa Play para comenzar la transmisión.</p>
+                </div>
+            </section>
+
+            <!-- FORMULARIO -->
+            <section class="contact-section">
+                <h2>📩 Envíanos un Mensaje</h2>
+
+                <!-- Cambiá AQUI la URL del formulario -->
+                <form action="AQUI_TU_URL_DE_FORMULARIO" method="POST" class="contact-form">
+
+                    <div class="form-group">
+                        <label for="name">Tu Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Tu Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+
+                <p class="whatsapp-note">O contáctanos por WhatsApp:</p>
+
+                <a href="https://wa.me/3705400598" target="_blank" class="whatsapp-btn">
+                    Abrir WhatsApp
+                </a>
+            </section>
+
+        </main>
+
+        <!-- PIE DE PÁGINA -->
+        <footer>
+            <p>&copy; 2024 VISION DE RADIO 91.7. Todos los derechos reservados.</p>
+        </footer>
+
+    </div>
 
 </body>
+    <div class="background-animated"></div>
 </html>

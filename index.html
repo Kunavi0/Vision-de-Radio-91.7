@@ -12,21 +12,25 @@
 </header>
 
 <section class="player-section">
-    <script type="text/javascript" src="https://hosted.muses.org/mrp.js"></script>
-<script type="text/javascript">
-    MRP.insert({
-        'url':'https://fpsnew2.listen2myradio.com:2199/listen.php?ip=212.84.160.3&port=8734&type=s2&mount=1',
-        'volume':100,
-        'autoplay':true, 
-        'forceHTML5':true,
-        'jsevents':true,
-        'buffering':0,
-        'title':'VISION DE RADIO 91.7',
-        'welcome':'En Vivo',
-        'wmode':'transparent',
-        'skin':'neon',
-        'width':386,
-        'height':47
+<div class="radio-card">
+    <div class="radio-info">
+        <div class="play-btn" id="playBtn">
+            ▶
+        </div>
+        <div>
+            <h3>VISION DE RADIO 91.7</h3>
+            <p>En Vivo</p>
+        </div>
+    </div>
+
+    <div class="slider-box">
+        <input type="range" id="volumeSlider" min="0" max="100" value="100">
+        <span id="volLabel">100%</span>
+    </div>
+</div>
+
+<audio id="radioPlayer" src="https://fpsnew2.listen2myradio.com:2199/listen.php?ip=212.84.160.3&port=8734&type=s2&mount=1"></audio>
+
     });
 </script>
 

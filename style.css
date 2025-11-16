@@ -1,68 +1,138 @@
+/* GENERAL */
+
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(180deg, #002b55, #88aee0);
-    background-size: cover;
-    backdrop-filter: blur(6px);
+    color: #fff;
+}
+
+/* Fondo animado */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #1e1e1e, #111, #202020, #0f0f0f);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+    z-index: -1;
+    filter: blur(10px);
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .container {
-    width: 90%;
-    max-width: 900px;
+    max-width: 700px;
     margin: auto;
+    padding: 20px;
     text-align: center;
 }
 
-header {
-    padding: 20px;
+/* LOGO */
+.radio-logo {
+    width: 150px;
+    height: auto;
+    border-radius: 100%;
+    margin-bottom: 10px;
 }
 
-.radio-logo {
-    width: 180px;
+/* TITULOS */
+h1 {
+    font-size: 2.2em;
+    margin: 10px 0;
+}
+
+.slogan {
+    font-size: 1.1em;
+    opacity: 0.8;
+}
+
+/* PLAYER */
+.player-section {
+    margin-top: 25px;
 }
 
 .player-box {
-    margin: auto;
-    padding: 10px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.45);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
 }
+
+.tip-play {
+    margin-top: 10px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* FORMULARIO */
 
 .contact-section {
-    margin-top: 30px;
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
 }
 
-.contact-form {
-    display: grid;
-    gap: 18px;
-    margin: auto;
-    width: 80%;
+label {
+    float: left;
+    font-weight: bold;
 }
 
 input, textarea {
     width: 100%;
     padding: 10px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: none;
+    margin-top: 6px;
+    margin-bottom: 15px;
 }
 
 .submit-btn {
-    padding: 12px;
-    background: #0066ff;
-    color: white;
+    background: #0099ff;
+    color: #fff;
+    padding: 12px 20px;
     border: none;
-    border-radius: 6px;
+    font-size: 1em;
+    border-radius: 8px;
     cursor: pointer;
 }
 
+.submit-btn:hover {
+    background: #0077cc;
+}
+
+/* WHATSAPP */
+
 .whatsapp-btn {
     display: inline-block;
-    margin-top: 15px;
     background: #25D366;
-    padding: 12px 22px;
     color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
     text-decoration: none;
-    border-radius: 6px;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.whatsapp-btn i {
+    font-size: 1.4em;
+    margin-right: 8px;
+}
+
+.whatsapp-btn:hover {
+    background: #1ebe5a;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 40px;
+    opacity: 0.6;
+    font-size: 0.9em;
 }

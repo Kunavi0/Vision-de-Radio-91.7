@@ -41,9 +41,9 @@ body {
 
 /* LOGO */
 .radio-logo {
-    width: 450px;
+    width: 300px;
     height: auto;
-    border-radius: 0%;
+    border-radius: 5%;
     margin-bottom: 10px;
 }
 

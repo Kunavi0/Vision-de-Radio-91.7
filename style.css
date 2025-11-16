@@ -11,14 +11,63 @@ body {
     color: cyan;
     text-shadow: 0 0 10px cyan;
 }
-.player-section, .contact {
-    padding: 20px 40px;
-    margin: 20px auto;
-    max-width: 600px;
-    background: rgba(0,0,30,0.6);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 15px #00eaff;
+.radio-card {
+    background: #0d1325;
+    padding: 25px;
+    border-radius: 22px;
+    max-width: 420px;
+    margin: auto;
+    color: white;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    font-family: 'Roboto', sans-serif;
+}
+
+.radio-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.play-btn {
+    width: 70px;
+    height: 70px;
+    background: white;
+    color: #0d1325;
+    font-size: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.play-btn:hover {
+    transform: scale(1.09);
+}
+
+.radio-card h3 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.radio-card p {
+    margin: 0;
+    color: #9ca3af;
+}
+
+.slider-box {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#volumeSlider {
+    width: 100%;
+}
+
 }
 input, textarea {
     width: 100%;

@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visión de Radio 91.7 FM - Laguna Yema, Formosa</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body {
             background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 100%);
@@ -24,6 +27,7 @@
             overflow-x: hidden;
         }
         
+        /* Fondo con ondas de radio */
         body::before {
             content: '';
             position: fixed;
@@ -31,8 +35,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(255, 0, 204, 0.05) 0%, transparent 50%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 204, 0.05) 0%, transparent 50%);
             z-index: -1;
         }
         
@@ -52,6 +57,7 @@
             z-index: 1;
         }
         
+        /* Efecto de borde luminoso */
         .radio-player::before {
             content: '';
             position: absolute;
@@ -66,8 +72,23 @@
             filter: blur(10px);
         }
         
-        .particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3; }
-        .particle { position: absolute; background: #00f3ff; border-radius: 50%; animation: float 20s infinite linear; }
+        /* Partículas de fondo */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #00f3ff;
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
         
         @keyframes float {
             0% { transform: translateY(0) translateX(0); opacity: 0.8; }
@@ -77,6 +98,7 @@
             100% { transform: translateY(0) translateX(0); opacity: 0.8; }
         }
         
+        /* Cabecera con logo REAL desde GitHub */
         .header {
             display: flex;
             justify-content: space-between;
@@ -88,26 +110,31 @@
             border-bottom: 2px solid rgba(0, 243, 255, 0.3);
         }
         
-        .logo-container { display: flex; align-items: center; gap: 20px; position: relative; }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
         
-        .logo-main {
+        /* Contenedor del logo real */
+        .logo-real-container {
             position: relative;
             width: 220px;
             height: 110px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(255, 0, 204, 0.1));
             border-radius: 20px;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
                         inset 0 0 0 1px rgba(0, 243, 255, 0.3);
             border: 2px solid rgba(0, 243, 255, 0.4);
             overflow: hidden;
         }
         
-        .logo-main::before {
+        .logo-real-container::before {
             content: '';
             position: absolute;
             top: 0;
@@ -117,28 +144,42 @@
             background: linear-gradient(90deg, #00f3ff, #ff00cc);
         }
         
-        .logo-text { text-align: center; line-height: 1; position: relative; z-index: 1; width: 100%; }
+        /* Estilos para la imagen del logo */
+        .logo-real {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
+            transition: transform 0.3s ease;
+        }
         
-        .logo-vision {
+        .logo-real:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Fallback si la imagen no carga */
+        .logo-fallback {
+            display: none;
+            text-align: center;
+        }
+        
+        .logo-fallback-text {
             font-family: 'Poppins', sans-serif;
-            font-size: 42px;
+            font-size: 32px;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: 2px;
             text-transform: uppercase;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            margin-bottom: -5px;
         }
         
-        .logo-de-radio {
+        .logo-fallback-subtext {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 700;
             color: #00f3ff;
             letter-spacing: 1px;
-            position: relative;
-            padding-top: 5px;
-            border-top: 2px solid rgba(255, 0, 204, 0.3);
+            margin-top: 5px;
         }
         
         .frequency-badge {
@@ -157,7 +198,12 @@
             font-family: 'Montserrat', sans-serif;
         }
         
-        .status { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+        .status {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
         
         .location {
             background: linear-gradient(90deg, rgba(0, 243, 255, 0.2), rgba(255, 0, 204, 0.2));
@@ -197,13 +243,18 @@
             animation: shine 3s infinite;
         }
         
-        @keyframes shine { 0% { left: -100%; } 100% { left: 100%; } }
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 50, 50, 0.4); }
             50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 50, 50, 0.6); }
             100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 50, 50, 0.4); }
         }
         
+        /* Mensaje de bienvenida */
         .welcome-message {
             background: linear-gradient(90deg, rgba(0, 243, 255, 0.15), rgba(255, 0, 204, 0.15));
             padding: 25px;
@@ -226,12 +277,29 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        .welcome-icon { color: #00f3ff; margin-right: 10px; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .welcome-icon {
+            color: #00f3ff;
+            margin-right: 10px;
+            animation: bounce 2s infinite;
+        }
         
-        .player-content { display: flex; gap: 35px; position: relative; z-index: 1; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
         
-        .album-cover { flex: 0 0 280px; }
+        /* Contenido principal */
+        .player-content {
+            display: flex;
+            gap: 35px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Portada del álbum */
+        .album-cover {
+            flex: 0 0 280px;
+        }
         
         .cover-container {
             position: relative;
@@ -270,7 +338,13 @@
             text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
         }
         
-        .cover-location { font-size: 15px; color: #aaddff; margin-top: 8px; text-align: center; font-weight: 500; }
+        .cover-location {
+            font-size: 15px;
+            color: #aaddff;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
         
         .cover-glow {
             position: absolute;
@@ -288,7 +362,10 @@
             100% { opacity: 0.6; transform: scale(1.1); }
         }
         
-        .song-info { flex: 1; }
+        /* Información y controles */
+        .song-info {
+            flex: 1;
+        }
         
         .show-title {
             font-size: 15px;
@@ -302,8 +379,16 @@
             gap: 10px;
         }
         
-        .show-title::before { content: '▶'; font-size: 12px; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .show-title::before {
+            content: '▶';
+            font-size: 12px;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
         
         .song-title {
             font-size: 36px;
@@ -318,8 +403,14 @@
             line-height: 1.2;
         }
         
-        .artist { font-size: 20px; color: #bbddff; margin-bottom: 35px; font-weight: 500; }
+        .artist {
+            font-size: 20px;
+            color: #bbddff;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
         
+        /* Visualizador de ondas */
         .waveform {
             height: 90px;
             background: rgba(0, 0, 0, 0.4);
@@ -332,7 +423,13 @@
             backdrop-filter: blur(5px);
         }
         
-        .wave { display: flex; align-items: center; justify-content: space-around; width: 100%; height: 100%; }
+        .wave {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            height: 100%;
+        }
         
         .wave-bar {
             width: 8px;
@@ -343,9 +440,19 @@
             box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
         }
         
-        @keyframes wave { 0%, 100% { height: 20%; } 50% { height: 100%; } }
+        @keyframes wave {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
         
-        .controls { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; gap: 20px; }
+        /* Controles */
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
         
         .control-btn {
             width: 60px;
@@ -383,7 +490,9 @@
             border-color: rgba(0, 243, 255, 0.5);
         }
         
-        .control-btn:hover::before { opacity: 1; }
+        .control-btn:hover::before {
+            opacity: 1;
+        }
         
         .play-btn {
             width: 80px;
@@ -442,7 +551,10 @@
             box-shadow: 0 0 15px #00f3ff;
         }
         
-        .progress-container { margin-bottom: 30px; }
+        /* Barra de progreso */
+        .progress-container {
+            margin-bottom: 30px;
+        }
         
         .progress-bar {
             height: 8px;
@@ -489,6 +601,7 @@
             font-weight: 500;
         }
         
+        /* Redes sociales */
         .social-container {
             margin: 30px 0;
             padding: 25px;
@@ -510,7 +623,10 @@
             font-family: 'Poppins', sans-serif;
         }
         
-        .social-buttons { display: flex; gap: 20px; }
+        .social-buttons {
+            display: flex;
+            gap: 20px;
+        }
         
         .social-btn {
             flex: 1;
@@ -549,7 +665,9 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
-        .social-btn:hover::before { left: 100%; }
+        .social-btn:hover::before {
+            left: 100%;
+        }
         
         .social-btn.facebook {
             background: linear-gradient(90deg, #1877F2, #0d5dbd);
@@ -561,6 +679,7 @@
             border-color: rgba(228, 64, 95, 0.4);
         }
         
+        /* Información de programas */
         .programs-info {
             margin-top: 30px;
             padding: 25px;
@@ -581,7 +700,11 @@
             font-weight: 700;
         }
         
-        .program-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .program-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
         
         .program-item {
             background: rgba(255, 255, 255, 0.05);
@@ -611,7 +734,9 @@
             transition: transform 0.3s;
         }
         
-        .program-item:hover::before { transform: scaleX(1); }
+        .program-item:hover::before {
+            transform: scaleX(1);
+        }
         
         .program-name {
             font-size: 16px;
@@ -631,8 +756,13 @@
             gap: 8px;
         }
         
-        .program-desc { font-size: 13px; color: #aaa; line-height: 1.5; }
+        .program-desc {
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.5;
+        }
         
+        /* Footer */
         .footer {
             margin-top: 35px;
             padding-top: 25px;
@@ -644,7 +774,9 @@
             font-size: 14px;
         }
         
-        .footer p { margin-bottom: 8px; }
+        .footer p {
+            margin-bottom: 8px;
+        }
         
         .footer a {
             color: #00f3ff;
@@ -665,8 +797,11 @@
             transition: width 0.3s;
         }
         
-        .footer a:hover::after { width: 100%; }
+        .footer a:hover::after {
+            width: 100%;
+        }
         
+        /* Notificaciones */
         .notification {
             position: fixed;
             top: 30px;
@@ -692,51 +827,154 @@
         
         /* Responsive */
         @media (max-width: 1024px) {
-            .radio-player { max-width: 95%; padding: 25px; }
-            .program-list { grid-template-columns: repeat(2, 1fr); }
+            .radio-player {
+                max-width: 95%;
+                padding: 25px;
+            }
+            
+            .program-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
-            .player-content { flex-direction: column; }
-            .album-cover { width: 100%; max-width: 280px; margin: 0 auto; }
-            .song-title { font-size: 28px; }
-            .artist { font-size: 18px; }
-            .controls { flex-wrap: wrap; justify-content: center; }
-            .volume-container { width: 100%; max-width: 300px; margin: 0 auto; }
-            .header { flex-direction: column; gap: 20px; align-items: center; text-align: center; }
-            .status { width: 100%; flex-direction: row; justify-content: center; flex-wrap: wrap; }
-            .social-buttons { flex-direction: column; }
-            .program-list { grid-template-columns: 1fr; }
-            .logo-main { width: 200px; height: 100px; }
-            .logo-vision { font-size: 36px; }
-            .logo-de-radio { font-size: 22px; }
+            .player-content {
+                flex-direction: column;
+            }
+            
+            .album-cover {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            
+            .song-title {
+                font-size: 28px;
+            }
+            
+            .artist {
+                font-size: 18px;
+            }
+            
+            .controls {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .volume-container {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .status {
+                width: 100%;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .social-buttons {
+                flex-direction: column;
+            }
+            
+            .program-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-real-container {
+                width: 180px;
+                height: 90px;
+            }
         }
         
         @media (max-width: 480px) {
-            .radio-player { padding: 20px; border-radius: 25px; }
-            .logo-vision { font-size: 28px; }
-            .logo-de-radio { font-size: 18px; }
-            .song-title { font-size: 24px; }
-            .artist { font-size: 16px; }
-            .welcome-text { font-size: 16px; }
-            .controls { gap: 15px; }
-            .control-btn { width: 50px; height: 50px; font-size: 18px; }
-            .play-btn { width: 70px; height: 70px; font-size: 24px; }
-            .frequency-badge { font-size: 16px; padding: 6px 12px; bottom: -10px; right: -10px; }
+            .radio-player {
+                padding: 20px;
+                border-radius: 25px;
+            }
+            
+            .song-title {
+                font-size: 24px;
+            }
+            
+            .artist {
+                font-size: 16px;
+            }
+            
+            .welcome-text {
+                font-size: 16px;
+            }
+            
+            .controls {
+                gap: 15px;
+            }
+            
+            .control-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+            
+            .play-btn {
+                width: 70px;
+                height: 70px;
+                font-size: 24px;
+            }
+            
+            .frequency-badge {
+                font-size: 16px;
+                padding: 6px 12px;
+                bottom: -10px;
+                right: -10px;
+            }
+            
+            .logo-real-container {
+                width: 160px;
+                height: 80px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="radio-player">
+        <!-- Partículas de fondo -->
         <div class="particles" id="particles"></div>
         
+        <!-- Cabecera con logo REAL desde GitHub -->
         <div class="header">
             <div class="logo-container">
-                <div class="logo-main">
-                    <div class="logo-text">
-                        <div class="logo-vision">VISIÓN</div>
-                        <div class="logo-de-radio">DE RADIO</div>
+                <div class="logo-real-container">
+                    <!-- LOGO REAL DESDE GITHUB -->
+                    <!-- 
+                    REEMPLAZA ESTA URL CON LA DE TU LOGO EN GITHUB:
+                    Formato: https://raw.githubusercontent.com/[usuario]/[repositorio]/[rama]/logo.png
+                    
+                    Ejemplos:
+                    - https://raw.githubusercontent.com/tu-usuario/vision-radio/main/logo.png
+                    - https://raw.githubusercontent.com/tu-usuario/vision-radio/master/logo.png
+                    - https://raw.githubusercontent.com/tu-usuario/vision-radio/gh-pages/logo.png
+                    -->
+                    <img 
+                        src="https://raw.githubusercontent.com/[TU-USUARIO]/[TU-REPOSITORIO]/main/logo.png" 
+                        alt="Visión de Radio 91.7 FM"
+                        class="logo-real"
+                        onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';"
+                    >
+                    
+                    <!-- Fallback si el logo no carga -->
+                    <div class="logo-fallback" id="logoFallback">
+                        <div class="logo-fallback-text">VISIÓN</div>
+                        <div class="logo-fallback-subtext">DE RADIO</div>
                     </div>
+                    
                     <div class="frequency-badge">91.7 FM</div>
                 </div>
             </div>
@@ -753,6 +991,7 @@
             </div>
         </div>
         
+        <!-- Mensaje de bienvenida -->
         <div class="welcome-message">
             <div class="welcome-text">
                 <i class="fas fa-broadcast-tower welcome-icon"></i>
@@ -760,7 +999,9 @@
             </div>
         </div>
         
+        <!-- Contenido principal -->
         <div class="player-content">
+            <!-- Portada del álbum -->
             <div class="album-cover">
                 <div class="cover-container">
                     <div class="cover-image">
@@ -772,15 +1013,19 @@
                 </div>
             </div>
             
+            <!-- Información y controles -->
             <div class="song-info">
+                <!-- TEXTO FIJO como solicitaste -->
                 <div class="show-title">TRANSMISIÓN EN VIVO</div>
                 <h1 class="song-title" id="currentSong">La Mejor Radio</h1>
                 <div class="artist" id="currentArtist">Artistas Locales, Mundiales • Ritmos que nos Unen</div>
                 
+                <!-- Visualizador de ondas -->
                 <div class="waveform">
                     <div class="wave" id="wave"></div>
                 </div>
                 
+                <!-- Controles -->
                 <div class="controls">
                     <button class="control-btn" onclick="toggleMute()" id="muteBtn">
                         <i class="fas fa-volume-up"></i>
@@ -799,6 +1044,7 @@
                     </div>
                 </div>
                 
+                <!-- Barra de progreso -->
                 <div class="progress-container">
                     <div class="progress-bar">
                         <div class="progress" id="connectionBar"></div>
@@ -809,6 +1055,7 @@
                     </div>
                 </div>
                 
+                <!-- Redes sociales -->
                 <div class="social-container">
                     <div class="social-title">
                         <i class="fas fa-share-alt"></i> CONÉCTATE CON NOSOTROS
@@ -823,6 +1070,7 @@
                     </div>
                 </div>
                 
+                <!-- Información de programas -->
                 <div class="programs-info">
                     <div class="programs-title">
                         <i class="fas fa-calendar-alt"></i> PROGRAMACIÓN DESTACADA
@@ -848,6 +1096,7 @@
             </div>
         </div>
         
+        <!-- Footer -->
         <div class="footer">
             <p>© 2024 <strong>Visión de Radio 91.7 FM</strong> - Laguna Yema, Formosa, Argentina</p>
             <p>La radio de la comunidad formoseña | <a href="javascript:void(0)" onclick="showContact()">Contacto</a> | Transmitiendo con pasión desde el corazón de Formosa</p>
@@ -857,12 +1106,14 @@
         </div>
     </div>
     
+    <!-- Notificación -->
     <div class="notification" id="notification">
         <i class="fas fa-info-circle"></i>
         <span id="notificationText">Mensaje de notificación</span>
     </div>
 
     <script>
+        // Variables globales
         let radio = null;
         let isPlaying = false;
         let isMuted = false;
@@ -870,27 +1121,72 @@
         let connectionTime = 0;
         let connectionTimer = null;
         
+        // URL del servidor (oculta)
         const STREAM_URL = 'https://fpsnew2.listen2myradio.com:2199/listen.php?ip=212.84.160.3&port=8734&type=s2&mount=1';
         
+        // INSTRUCCIÓN IMPORTANTE: 
+        // REEMPLAZA LA SIGUIENTE URL CON LA URL DE TU LOGO EN GITHUB
+        const LOGO_GITHUB_URL = 'https://raw.githubusercontent.com/[TU-USUARIO]/[TU-REPOSITORIO]/main/logo.png';
+        // Ejemplo: 'https://raw.githubusercontent.com/tu-usuario/vision-radio/main/logo.png'
+        
+        // Inicializar
         document.addEventListener('DOMContentLoaded', function() {
+            // Configurar logo desde GitHub
+            setupLogoFromGitHub();
+            
+            // Inicializar reproductor
             initPlayer();
             initWaveform();
             initParticles();
             initVolumeControl();
             initWelcomeMessages();
             
+            // Mensaje de bienvenida
             setTimeout(() => {
                 showNotification('¡Bienvenido a Visión de Radio 91.7 FM!', 'info');
             }, 1000);
             
+            // Establecer texto fijo
             setFixedText();
         });
         
+        // Configurar logo desde GitHub
+        function setupLogoFromGitHub() {
+            const logoImg = document.querySelector('.logo-real');
+            if (logoImg) {
+                // Actualizar la URL del logo
+                logoImg.src = LOGO_GITHUB_URL;
+                
+                // Añadir timestamp para evitar caché
+                logoImg.src += '?t=' + new Date().getTime();
+                
+                // Verificar si la imagen carga correctamente
+                logoImg.onload = function() {
+                    console.log('✅ Logo cargado desde GitHub:', LOGO_GITHUB_URL);
+                    showNotification('Logo cargado correctamente', 'success');
+                };
+                
+                logoImg.onerror = function() {
+                    console.error('❌ Error cargando logo desde:', LOGO_GITHUB_URL);
+                    showNotification('Mostrando logo de respaldo', 'info');
+                    
+                    // Mostrar fallback
+                    logoImg.style.display = 'none';
+                    const fallback = document.getElementById('logoFallback');
+                    if (fallback) {
+                        fallback.style.display = 'block';
+                    }
+                };
+            }
+        }
+        
+        // Establecer texto fijo como solicitaste
         function setFixedText() {
             document.getElementById('currentSong').textContent = 'La Mejor Radio';
             document.getElementById('currentArtist').textContent = 'Artistas Locales, Mundiales • Ritmos que nos Unen';
         }
         
+        // Inicializar reproductor
         function initPlayer() {
             try {
                 radio = new Howl({
@@ -937,6 +1233,7 @@
             }
         }
         
+        // Controlar play/pause
         document.getElementById('playBtn').addEventListener('click', function() {
             if (!radio) {
                 showNotification('Inicializando reproductor...', 'info');
@@ -953,6 +1250,7 @@
             }
         });
         
+        // Actualizar botón de play/pause
         function updatePlayButton() {
             const playBtn = document.getElementById('playBtn');
             const playIcon = playBtn.querySelector('i');
@@ -972,6 +1270,7 @@
             }
         }
         
+        // Control de volumen
         function initVolumeControl() {
             const volumeBar = document.getElementById('volumeBar');
             const volumeLevel = document.getElementById('volumeLevel');
@@ -1032,6 +1331,7 @@
             }
         }
         
+        // Silenciar/desilenciar
         function toggleMute() {
             if (!radio) return;
             
@@ -1050,6 +1350,7 @@
             }
         }
         
+        // Rotar mensajes de bienvenida
         function initWelcomeMessages() {
             const messages = [
                 "¡La voz de nuestra comunidad formoseña! Conectando corazones desde Laguna Yema. Tu compañía musical en Formosa.",
@@ -1074,6 +1375,7 @@
             }, 20000);
         }
         
+        // Actualizar contador de oyentes
         function updateListenerCount() {
             if (!isPlaying) return;
             
@@ -1094,6 +1396,7 @@
             }, 15000);
         }
         
+        // Temporizador de conexión
         function startConnectionTimer() {
             connectionTime = 0;
             stopConnectionTimer();
@@ -1115,6 +1418,7 @@
             }
         }
         
+        // Actualizar estado de conexión
         function updateConnectionStatus(status) {
             const statusElement = document.getElementById('connectionStatus');
             statusElement.textContent = status;
@@ -1139,6 +1443,7 @@
             }
         }
         
+        // Mostrar notificación
         function showNotification(message, type) {
             const notification = document.getElementById('notification');
             const notificationText = document.getElementById('notificationText');
@@ -1174,6 +1479,7 @@
             }, 4000);
         }
         
+        // Inicializar partículas
         function initParticles() {
             const particlesContainer = document.getElementById('particles');
             for (let i = 0; i < 25; i++) {
@@ -1198,6 +1504,7 @@
             }
         }
         
+        // Inicializar ondas de sonido
         function initWaveform() {
             const waveContainer = document.getElementById('wave');
             for (let i = 0; i < 50; i++) {
@@ -1208,22 +1515,12 @@
             }
         }
         
+        // Mostrar información de contacto
         function showContact() {
             showNotification('Visión de Radio 91.7 FM - Laguna Yema, Formosa\nContacto: próximamente disponible', 'info');
         }
         
-        function animateLogo() {
-            const logoVision = document.querySelector('.logo-vision');
-            let hue = 180;
-            
-            setInterval(() => {
-                hue = (hue + 0.5) % 360;
-                logoVision.style.textShadow = `0 0 10px hsl(${hue}, 100%, 50%), 0 0 20px hsl(${hue}, 100%, 50%)`;
-            }, 100);
-        }
-        
-        animateLogo();
-        
+        // Efectos hover mejorados
         document.querySelectorAll('.control-btn, .social-btn, .program-item').forEach(btn => {
             btn.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-5px) scale(1.05)';
@@ -1234,8 +1531,10 @@
             });
         });
         
+        // Inicializar contador de oyentes
         updateListenerCount();
         
+        // Prevenir cambios en el texto fijo
         const originalTitle = 'La Mejor Radio';
         const originalArtist = 'Artistas Locales, Mundiales • Ritmos que nos Unen';
         

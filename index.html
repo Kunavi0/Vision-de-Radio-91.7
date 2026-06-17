@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
     
-    <!-- ===== FLV.JS PARA VIDEO STREAM ===== -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/flv.js/1.6.0/flv.min.js"></script>
+    <!-- ===== HLS.JS PARA VIDEO ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1365,19 +1365,17 @@
         }, 1000);
         
         // ============================================================
-        // ===== REPRODUCTOR DE VIDEO (CON KUNAVI) =====
+        // ===== REPRODUCTOR DE VIDEO HLS (FINAL) =====
         // ============================================================
         (function() {
             const videoElement = document.getElementById('videoElement');
             const videoStatus = document.getElementById('videoStatus');
             const streamStatusText = document.getElementById('streamStatusText');
             
-            // ⚠️ URL con KUNAVI - Esta es la clave que usas en OBS
+            // ⚠️ URL del stream con KUNAVI
             const STREAM_URL = 'https://unlivable-tulip-thinly.ngrok-free.dev/live/KUNAVI.flv';
             
-            let flvPlayer = null;
-            let reconnectAttempts = 0;
-            const MAX_RECONNECT = 5;
+            let hls = null;
             let isConnected = false;
             
             function updateStatus(message, type, streamMessage) {
@@ -1388,107 +1386,82 @@
                 }
             }
             
-            function initVideoPlayer() {
-                if (typeof flvjs === 'undefined' || !flvjs.isSupported()) {
-                    updateStatus('❌ FLV no soportado', '', 'Error');
-                    return;
-                }
-                
-                try {
-                    flvPlayer = flvjs.createPlayer({
-                        type: 'flv',
-                        url: STREAM_URL,
-                        isLive: true,
-                        cors: true,
-                        enableWorker: true,
-                        enableStashBuffer: false,
-                        stashInitialSize: 128
-                    });
-                    
-                    flvPlayer.attachMediaElement(videoElement);
-                    flvPlayer.load();
-                    
-                    flvPlayer.play().catch(function(error) {
-                        console.log('Autoplay bloqueado:', error);
-                        updateStatus('🔄 Haz clic para reproducir', 'warning', 'Esperando interacción');
-                        videoElement.addEventListener('click', function clickHandler() {
-                            videoElement.play();
-                            updateStatus('🟢 Reproduciendo', 'connected', '✅ Transmitiendo en vivo');
-                            videoElement.removeEventListener('click', clickHandler);
+            function initHLSPlayer() {
+                // Primero probar con HLS.js
+                if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+                    try {
+                        hls = new Hls({
+                            enableWorker: true,
+                            lowLatencyMode: true,
+                            liveSyncDurationCount: 1,
+                            liveMaxLatencyDurationCount: 1
                         });
-                    });
-                    
-                    flvPlayer.on(flvjs.Events.METADATA_ARRIVED, function() {
-                        isConnected = true;
-                        updateStatus('🟢 Conectado', 'connected', '✅ Transmitiendo en vivo');
-                        reconnectAttempts = 0;
-                    });
-                    
-                    flvPlayer.on(flvjs.Events.PLAYING, function() {
-                        isConnected = true;
-                        updateStatus('🟢 Reproduciendo', 'connected', '✅ Transmitiendo en vivo');
-                    });
-                    
-                    flvPlayer.on(flvjs.Events.STATISTICS_INFO, function(info) {
-                        if (info.speed > 0 && isConnected) {
-                            updateStatus('🟢 ' + Math.round(info.speed) + ' KB/s', 'connected', '✅ Transmitiendo en vivo');
-                        }
-                    });
-                    
-                    flvPlayer.on(flvjs.Events.ERROR, function(error) {
-                        console.log('Error FLV:', error);
-                        if (!isConnected) {
-                            updateStatus('⚠️ Reconectando...', 'warning', 'Reconectando...');
-                            reconnectAttempts++;
-                            if (reconnectAttempts < MAX_RECONNECT) {
-                                setTimeout(function() {
-                                    try {
-                                        if (flvPlayer) {
-                                            flvPlayer.destroy();
-                                            flvPlayer = null;
-                                        }
-                                        initVideoPlayer();
-                                    } catch(e) {
-                                        console.log('Error al reconectar:', e);
-                                    }
-                                }, 3000);
-                            } else {
-                                updateStatus('❌ Error de conexión', '', '❌ Error - Verifica el servidor');
-                            }
-                        }
-                    });
-                    
-                    console.log('✅ Reproductor FLV iniciado con KUNAVI');
-                    console.log('🔗 URL:', STREAM_URL);
-                    
-                } catch (error) {
-                    console.error('Error:', error);
-                    updateStatus('❌ Error al iniciar', '', 'Error');
+                        
+                        // HLS necesita un archivo .m3u8, pero Node-Media-Server no lo genera bien
+                        // Usamos el método "loadSource" con la URL FLV directamente
+                        // Esto no funcionará con HLS, así que usamos el video nativo
+                        throw new Error('HLS no soporta FLV');
+                        
+                    } catch (error) {
+                        console.log('HLS no soporta FLV, usando video nativo');
+                        useNativeVideo();
+                    }
+                } else {
+                    useNativeVideo();
                 }
             }
             
+            function useNativeVideo() {
+                // Usar video nativo HTML5 con el src directo
+                videoElement.src = STREAM_URL;
+                videoElement.load();
+                videoElement.muted = true;
+                
+                // Forzar reproducción
+                videoElement.play().catch(function(error) {
+                    console.log('Autoplay bloqueado:', error);
+                    updateStatus('🔄 Haz clic para reproducir', 'warning', 'Esperando interacción');
+                    videoElement.addEventListener('click', function clickHandler() {
+                        videoElement.play();
+                        videoElement.removeEventListener('click', clickHandler);
+                    });
+                });
+                
+                videoElement.addEventListener('loadedmetadata', function() {
+                    isConnected = true;
+                    updateStatus('🟢 Conectado', 'connected', '✅ Transmitiendo en vivo');
+                    videoElement.play();
+                });
+                
+                videoElement.addEventListener('playing', function() {
+                    isConnected = true;
+                    updateStatus('🟢 Reproduciendo', 'connected', '✅ Transmitiendo en vivo');
+                });
+                
+                videoElement.addEventListener('error', function(e) {
+                    console.log('Error nativo:', e);
+                    if (!isConnected) {
+                        updateStatus('❌ Error de conexión', '', '❌ Error - Verifica el servidor');
+                    }
+                });
+            }
+            
             if (document.readyState === 'complete') {
-                setTimeout(initVideoPlayer, 500);
+                setTimeout(initHLSPlayer, 500);
             } else {
                 window.addEventListener('load', function() {
-                    setTimeout(initVideoPlayer, 500);
+                    setTimeout(initHLSPlayer, 500);
                 });
             }
             
             document.addEventListener('visibilitychange', function() {
-                if (!document.hidden && flvPlayer) {
-                    try {
-                        flvPlayer.destroy();
-                        flvPlayer = null;
-                        isConnected = false;
-                        setTimeout(initVideoPlayer, 500);
-                    } catch(e) {
-                        console.log('Error al reconectar:', e);
-                    }
+                if (!document.hidden && !isConnected) {
+                    setTimeout(initHLSPlayer, 500);
                 }
             });
             
-            console.log('📺 Reproductor de video configurado con KUNAVI');
+            console.log('📺 Reproductor HLS iniciado');
+            console.log('🔗 URL:', STREAM_URL);
         })();
     </script>
 </body>
